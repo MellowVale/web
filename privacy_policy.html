@@ -1,13 +1,119 @@
-<p></p>
-<div class="container my-4">
-    <h1>Privacy Policy</h1>
-    <p>Effective as of December 22, 2025.</p>
-    <p>This Privacy Policy describes the privacy practices of Mellow Vale in connection with the Mellow Vale mobile
-        application (the &ldquo;App&rdquo;) and our website, mellowvale.com.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Privacy Policy for the Mellow Vale app and website.">
+    <title>Privacy Policy - Mellow Vale</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --surface: #f8fafc;
+            --text: #111827;
+            --muted: #4b5563;
+            --heading: #0f172a;
+            --link: #0b57d0;
+            --border: #e5e7eb;
+            --focus: #f59e0b;
+            --max-width: 900px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0b1220;
+                --surface: #111a2b;
+                --text: #e5e7eb;
+                --muted: #cbd5e1;
+                --heading: #f8fafc;
+                --link: #7dd3fc;
+                --border: #26334d;
+                --focus: #fbbf24;
+            }
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: var(--text); background: var(--bg); font-size: 16px; }
+        main { max-width: var(--max-width); margin: 0 auto; padding: 24px 20px 64px; }
+
+        a { color: var(--link); text-underline-offset: 2px; text-decoration-thickness: 1px; overflow-wrap: anywhere; }
+        a:hover { text-decoration-thickness: 2px; }
+        a:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+
+        h1, h2, h3 { color: var(--heading); }
+        h1 { margin: 0 0 8px; font-size: 2rem; line-height: 1.2; }
+        h2 { margin: 32px 0 12px; font-size: 1.25rem; line-height: 1.3; }
+        h3 { margin: 24px 0 10px; font-size: 1.05rem; line-height: 1.35; }
+        p { margin: 0 0 12px; }
+        ul { margin: 0 0 12px 1.25rem; padding: 0; }
+        li { margin: 4px 0; }
+        address { font-style: normal; }
+
+        .meta { color: var(--muted); margin: 0 0 12px; }
+        .toc { margin: 16px 0 28px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+        .toc-title { margin: 0 0 8px; font-weight: 700; color: var(--heading); }
+        .toc ul { margin: 0 0 0 1.25rem; }
+        .toc li { margin: 2px 0; }
+
+        .table-wrapper { margin: 16px 0 20px; overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); }
+        table { width: 100%; border-collapse: collapse; min-width: 640px; margin: 0; }
+        caption { caption-side: top; text-align: left; padding: 12px 12px 0; font-weight: 700; color: var(--heading); }
+        th, td { border-top: 1px solid var(--border); padding: 10px 12px; text-align: left; vertical-align: top; }
+        thead th { background: var(--surface); border-top: none; }
+
+        .strong { font-weight: 700; }
+        .underline { text-decoration: underline; }
+        .italic { font-style: italic; }
+
+        .skip-link { position: absolute; top: 8px; left: 8px; padding: 10px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; transform: translateY(-220%); transition: transform 160ms ease; color: var(--text); }
+        .skip-link:focus { transform: translateY(0); }
+
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); }
+
+        @media print {
+            body { background: #ffffff; color: #000000; }
+            main { max-width: none; padding: 0; }
+            a { color: #000000; text-decoration: underline; }
+            .toc, .skip-link { display: none; }
+            .table-wrapper { overflow: visible; border: 1px solid #000000; }
+            table { min-width: 0; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#content">Skip to content</a>
+<main id="content" tabindex="-1">
+    <header>
+        <h1>Privacy Policy</h1>
+        <p class="meta"><span class="strong">Effective date:</span> <time datetime="2026-01-03">January 3, 2026</time></p>
+        <p>This Privacy Policy describes the privacy practices of Mellow Vale in connection with the Mellow Vale mobile
+            application (the &ldquo;App&rdquo;) and our website, <a href="https://mellowvale.com">mellowvale.com</a>.</p>
+    </header>
     <p>Individuals located in the <a
-            href="http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:European_Economic_Area_(EEA)">European
-            Economic Area</a> should also read our Notice to European Users <a
+            href="https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:European_Economic_Area_(EEA)">European
+            Economic Area</a>, the United Kingdom, or Switzerland should also read our Notice to European Users <a
             href="#notice-to-european-users">below</a>.</p>
+    <nav class="toc" aria-label="Table of contents">
+        <p class="toc-title">Contents</p>
+        <ul>
+            <li><a href="#personal-information-we-collect">Personal Information We Collect</a></li>
+            <li><a href="#how-we-use-your-personal-information">How We Use Your Personal Information</a></li>
+            <li><a href="#how-we-share-your-personal-info">How We Share Your Personal Information</a></li>
+            <li><a href="#compliance-with-law">Compliance with Law</a></li>
+            <li><a href="#your-choices">Your Choices</a></li>
+            <li><a href="#other-sites">Other Sites, Mobile Applications and Services</a></li>
+            <li><a href="#security-practices">Security Practices</a></li>
+            <li><a href="#retention">Retention</a></li>
+            <li><a href="#data-storage-and-processing-locations">Data Storage and Processing Locations</a></li>
+            <li><a href="#international-data-transfers">International Data Transfers</a></li>
+            <li><a href="#children">Children</a></li>
+            <li><a href="#changes-to-the-privacy-policy">Changes to the Privacy Policy</a></li>
+            <li><a href="#how-to-contact-us">How to Contact Us</a></li>
+            <li><a href="#notice-to-european-users">Notice to European Users</a></li>
+            <li><a href="#notice-to-california-users">Notice to California Residents</a></li>
+        </ul>
+    </nav>
     <h2 id="personal-information-we-collect">Personal Information We Collect</h2>
     <p>When you use the App, we may collect information about you, including:</p>
     <ul>
@@ -22,17 +128,16 @@
             third-party identity provider (for example, Apple or Google). We may receive information from that
             provider, such as your name and email address, subject to the provider&rsquo;s terms and your settings.</li>
         <li><span class="strong">Device data</span>, such as your device operating system type and version number,
-            manufacturer and model, device ID, push tokens, advertising identifiers (where available), browser type,
-            screen resolution, IP address (and the associated country in which you are located), referrer data, and
-            other information about the device you use to access the App.</li>
+            manufacturer and model, device ID, advertising identifiers (such as IDFA/AAID if you enable tracking
+            permissions), browser type, screen resolution, IP address (and the associated country in which you are
+            located), referrer data, and other information about the device you use to access the App.</li>
         <li><span class="strong">Online activity data</span>, such as information about your use of and actions on the
             App and our website, including pages or screens you viewed, how long you spent on a page or screen,
             navigation paths between pages or screens, information about your activity on a page or screen, access
-            times, and length of access. We may collect this information directly or through our use of third-party
-            software development kits (&ldquo;SDKs&rdquo;) for analytics and performance. SDKs may enable third parties
-            to collect information directly from our App.</li>
+            times, and length of access. We may collect this information directly or through analytics or performance
+            tools (if enabled). These tools may allow third parties to collect information directly from our App.</li>
     </ul>
-    <h2>How We Use Your Personal Information</h2>
+    <h2 id="how-we-use-your-personal-information">How We Use Your Personal Information</h2>
     <p>We may use data you provide for the following purposes:</p>
     <p id="to-operate-and-improve-the-app" class="strong">To operate and improve the App:</p>
     <ul>
@@ -42,8 +147,8 @@
         <li>Communicate with you about the App, including sending announcements, updates, and security alerts, and
             responding to your requests, questions and feedback;</li>
         <li>Provide technical support and maintenance for the App; and</li>
-        <li>Perform statistical analysis about use of the App (including through the use of <a
-                href="https://policies.google.com/technologies/partner-sites">Google Analytics</a>).</li>
+        <li>Perform statistical analysis about use of the App (including through analytics or performance tools when
+            enabled).</li>
     </ul>
     <p id="to-send-you-marketing-and-promotional-communications" class="strong">To send you product updates and optional
         marketing communications.</p>
@@ -53,13 +158,13 @@
             safety.</span> We may use your personal information and disclose it to law enforcement, government
         authorities, and private parties as we believe necessary or appropriate to: (a) protect our, your or
         others&rsquo; rights, privacy, safety or property (including by making and defending legal claims); (b) enforce
-        the terms and conditions that govern the Service; and (c) protect, investigate and deter against fraudulent,
+        the terms and conditions that govern the App; and (c) protect, investigate and deter against fraudulent,
         harmful, unauthorized, unethical or illegal activity.</p>
     <p><span id="with-your-consent" class="strong">With your consent.</span> In some cases, we may specifically ask for
         your consent to collect, use or share your personal information, such as when required by law.</p>
     <p><span id="create-anonymous-aggregated-data" class="strong">To create anonymous, aggregated or de-identified
             data.</span> We may create anonymous, aggregated or de-identified data from your personal information and
-        other individuals whose personal information we collect. We make personal information into anonymous, aggregated
+        other individuals&rsquo; personal information that we collect. We make personal information into anonymous, aggregated
         or de-identified data by removing information that makes the data personally identifiable to you. We may use
         this anonymous, aggregated or de-identified data and share it with third parties for our lawful business
         purposes.</p>
@@ -91,16 +196,17 @@
     <h2 id="compliance-with-law">Compliance with Law</h2>
     <p>We may be required to use and share your personal information to comply with applicable laws, lawful requests,
         and legal process, such as to respond to subpoenas or requests from government authorities.</p>
-    <h2>Your Choices</h2>
+    <h2 id="your-choices">Your Choices</h2>
     <p>In this section, we describe the rights and choices available to all users. Users who are located within Europe
         can find additional information about their rights <a href="#notice-to-european-users">below</a>.</p>
     <p id="opt-out-of-marketing-communications"><span class="strong">Opt out of marketing communications and other push
-            notifications.</span> You may opt out of marketing-related communications and other notifications we may
-        send you via push notification by changing the settings on your mobile device.</p>
+            notifications.</span> You may opt out of marketing emails by using the unsubscribe link in those emails or
+        by contacting us. You may opt out of marketing-related communications and other notifications we may send you
+        via push notification by changing the settings on your mobile device.</p>
     <p><span class="strong">Device permissions.</span> You may revoke any permissions you previously granted to us, such
         as permission to access your camera, camera roll, or microphone through the settings on your mobile device.</p>
-    <p id="cloud-processing"><span class="strong">Cloud processing.</span> You may request that we remove your
-        information from our systems.</p>
+    <p id="account-deletion"><span class="strong">Account deletion.</span> You may request that we delete your account
+        and remove your information from our systems.</p>
     <p><span class="strong">Choosing not to share your personal information.</span> Where we are required by law to
         collect your personal information, or where we need your personal information in order to provide the App to
         you, if you do not provide this information when requested (or you later ask to delete it), we may not be able
@@ -111,7 +217,7 @@
         through the provider&rsquo;s settings. If you withdraw our ability to access certain information from a
         third-party provider, that choice will not apply to information that we have already received from that
         provider.</p>
-    <h2>Other Sites, Mobile Applications and Services</h2>
+    <h2 id="other-sites">Other Sites, Mobile Applications and Services</h2>
     <p>The App may contain links to other websites, mobile applications, and other online services operated by third
         parties. These links are not an endorsement of, or representation that we are affiliated with, any third party.
         In addition, our content may be included on web pages or in mobile applications or online services that are not
@@ -119,28 +225,27 @@
         not responsible for their actions. Other websites, mobile applications and online services follow different
         rules regarding the collection, use and sharing of your personal information. We encourage you to read the
         privacy policies of the other websites, mobile applications and online services you use.</p>
-    <h2>Security Practices</h2>
+    <h2 id="security-practices">Security Practices</h2>
     <p>We use commercially reasonable security practices to help keep the information collected through the App secure
         and take reasonable steps to verify your identity before granting you access to your account (if you have an
         account with us). However, no method of transmission or storage is completely secure, and we cannot guarantee
         absolute security.</p>
     <p>Please do your part to help us. You are responsible for maintaining the confidentiality of your login
         information and device identifiers, and for controlling access to communications between you and Mellow Vale at
-        all times. Your privacy settings may also be affected by changes the third-party services you connect to make
-        to their services. We are not responsible for the functionality, privacy, or security measures of any other
+        all times. Your privacy settings may also be affected by changes those third-party services make to their
+        services. We are not responsible for the functionality, privacy, or security measures of any other
         organization.</p>
-    <h2>Retention</h2>
+    <h2 id="retention">Retention</h2>
     <p>With respect to information that we may collect, we will retain such information in a personally identifiable
         format only for as long as necessary to fulfill the purposes we have set out in this Privacy Policy. You may
         also ask that we delete your information by <a href="#how-to-contact-us">contacting us</a>.</p>
-    <h2>Cross-Border Data Transfers</h2>
-    <p>We store the information we collect in connection with the App on Amazon Web Services and Google Cloud Platform.
-        For Amazon Web Services, we specify the US as the data storage location. Your personal information may be
-        accessed by our service providers in other locations outside of your state, province, or country. Your device ID
-        (and general App usage information) may also be accessed by the Company&rsquo;s technical support team in other
-        locations outside of your state, province, or country.</p>
+    <h2 id="data-storage-and-processing-locations">Data Storage and Processing Locations</h2>
+    <p>We may store and process the information we collect in connection with the App using service providers such as
+        Amazon Web Services and other service providers. Your personal information may be stored or accessed in
+        countries other than your own, including the United States, where data protection laws may differ from those in
+        your jurisdiction.</p>
     <h2 id="international-data-transfers">International Data Transfers</h2>
-    <p>Mellow Vale is based in the United States and processes personal information in the US and other countries.
+    <p>Mellow Vale is based in the United States and processes personal information in the U.S. and other countries.
         When we transfer personal information from the European Economic Area (EEA), United Kingdom, or Switzerland
         to the United States or other countries, we use appropriate safeguards to ensure your personal information
         remains protected in accordance with this Privacy Policy and applicable law.</p>
@@ -153,16 +258,17 @@
         consistent with our obligations under applicable data protection laws. These contracts restrict how service
         providers may access, use, and disclose your personal information.</p>
     <p>European individuals with inquiries or complaints regarding our Privacy Policy or data transfer practices
-        should contact Mellow Vale at support@mellowvale.com. If you are not satisfied with our response, you have
+        should contact Mellow Vale at <a href="mailto:support@mellowvale.com">support@mellowvale.com</a>. If you are not satisfied with our response, you have
         the right to lodge a complaint with your local data protection authority.</p>
     <p>Mellow Vale may be required to disclose personal data in response to lawful requests by public authorities,
         including to meet national security or law enforcement requirements.</p>
-    <h2>Children</h2>
-    <p>The App is not directed at children under the age of 4, and our <a
-            href="https://mellowvale.com/terms_of_use.html">Terms of Use</a> do not allow children under 4
-        years of age to use the App. If we learn that we have collected personal information of a child under the age of
-        4, we will delete it. We encourage parents with concerns to <a href="#how-to-contact-us">contact us</a>.</p>
-    <h2>Changes to the Privacy Policy</h2>
+    <h2 id="children">Children</h2>
+    <p>The App is not directed at children under the age of 13 (or the age of digital consent in your country), and our
+        <a href="terms_of_use.html">Terms of Use</a> do not allow children under the applicable
+        minimum age to use the App. If we learn that we have collected personal information of a child under the
+        applicable minimum age, we will delete it. We encourage parents with concerns to <a
+            href="#how-to-contact-us">contact us</a>.</p>
+    <h2 id="changes-to-the-privacy-policy">Changes to the Privacy Policy</h2>
     <p>We reserve the right to modify this Privacy Policy at any time. If we make material changes to this Privacy
         Policy, we will notify you by updating the date of this Privacy Policy and posting it on the App. We may, and if
         required by law, will, provide notification of changes in another way that we believe is reasonably likely to
@@ -172,19 +278,22 @@
         your continued use of the App after the posting of any modified Privacy Policy indicates your acceptance of the
         terms of the modified Privacy Policy.</p>
     <h2 id="how-to-contact-us">How to Contact Us</h2>
-    <p>Please direct any questions or comments about this Policy or privacy practices to support@mellowvale.com.</p>
+    <p>Please direct any questions or comments about this Policy or privacy practices to <a
+            href="mailto:support@mellowvale.com">support@mellowvale.com</a>.</p>
     <h2 id="notice-to-european-users">Notice to European Users</h2>
     <p>The information provided in this &ldquo;Notice to European Users&rdquo; section applies only to individuals who
-        reside in Europe.</p>
+        reside in the European Economic Area, the United Kingdom, or Switzerland.</p>
     <p><span class="strong">Personal information.</span> References to &ldquo;personal information&rdquo; in this
         Privacy Policy are equivalent to &ldquo;personal data&rdquo; governed by European data protection legislation.
     </p>
-    <p><span class="strong">Controller and EU Representative.</span> Mellow Vale is the controller of your personal
-        information covered by this Privacy Policy for purposes of European data protection
-        legislation.<br /><br /><span class="strong">Legal bases for processing.</span> We use your personal information
+    <p><span class="strong">Controller.</span> Mellow Vale is the controller of your personal information covered by
+        this Privacy Policy for purposes of European data protection legislation.<br /><br /><span class="strong">Legal
+            bases for processing.</span> We use your personal information
         only as permitted by law. Our legal bases for processing the personal information described in this Privacy
         Policy are described in the table below.</p>
+    <div class="table-wrapper">
     <table class="table table-bordered notice-eu-users">
+        <caption>Legal bases for processing (EEA/UK/Switzerland)</caption>
         <thead class="thead-light">
             <tr>
                 <th scope="col">
@@ -225,10 +334,11 @@
             </tr>
         </tbody>
     </table>
+    </div>
     <p class="strong">Your rights</p>
     <p>European data protection laws give you certain rights regarding your personal information. If you are located
-        within the European Union, you may ask us to take the following actions in relation to your personal information
-        that we hold:</p>
+        within the European Economic Area, the United Kingdom, or Switzerland, you may ask us to take the following
+        actions in relation to your personal information that we hold:</p>
     <ul>
         <li><span class="strong">Access.</span> Provide you with information about our processing of your personal
             information and give you access to your personal information.</li>
@@ -240,33 +350,32 @@
         <li><span class="strong">Object.</span> Object to our reliance on our legitimate interests as the basis of our
             processing of your personal information that impacts your rights.</li>
     </ul>
-    <p>You may submit these requests by email provided <a href="#how-to-contact-us">above</a>.</p>
+    <p>You may submit these requests by email to the address provided <a href="#how-to-contact-us">above</a>.</p>
     <p>If you would like to submit a complaint about our use of your personal information or our response to your
-        requests regarding your personal information, you may contact us at support@mellowvale.com or submit a
+        requests regarding your personal information, you may contact us at <a
+            href="mailto:support@mellowvale.com">support@mellowvale.com</a> or submit a
         complaint to the data protection regulator in your jurisdiction. You can find your data protection regulator <a
             href="https://edpb.europa.eu/about-edpb/board/members_en">here</a>.</p>
     <h2 id="notice-to-california-users">Notice to California Residents</h2>
-    <p>We are required by the California Consumer Privacy Act of 2018 (&ldquo;CCPA&rdquo;) to provide to California
-        residents an explanation of how we collect, use and share their personal information, and of the rights and
-        choices we offer California residents regarding our handling of their personal information.</p>
-    <p>We do not sell personal information.&nbsp;<span
-            style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 1rem;">In
-            addition to disclosures of personal information to our service providers and professional advisors, for
-            compliance, fraud prevention and safety, and in connection with a business transfer, as described in the
-        </span><a
-            style="background-color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 1rem;"
-            href="#how-we-share-your-personal-info">&ldquo;How We Share Your Personal Information&rdquo;</a><span
-            style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 1rem;">
-            section of the Privacy Policy, the following chart further describes our privacy practices with respect to
-            the personal information of our California consumers.</span></p>
+    <p>We are required by the California Consumer Privacy Act, as amended by the California Privacy Rights Act
+        (&ldquo;CCPA/CPRA&rdquo;), to provide to California residents an explanation of how we collect, use and share
+        their personal information, and of the rights and choices we offer California residents regarding our handling
+        of their personal information.</p>
+    <p>We do not sell personal information. In addition to disclosures of personal information to our service providers and professional advisors, for
+        compliance, fraud prevention and safety, and in connection with a business transfer, as described in the
+        <a href="#how-we-share-your-personal-info">&ldquo;How We Share Your Personal Information&rdquo;</a>
+        section of the Privacy Policy, the following chart further describes our privacy practices with respect to
+        the personal information of our California consumers.</p>
+    <div class="table-wrapper">
     <table class="table table-bordered">
+        <caption>CCPA notice: categories, sources, purposes, and sharing</caption>
         <thead class="thead-light">
             <tr>
-                <th><a href="#personal-information-we-collect">Personal information we collect</a></th>
-                <th>CCPA-defined categories</th>
-                <th>Sources of personal information</th>
-                <th>Purposes for which we may collect and use the personal information</th>
-                <th>Data Sharing</th>
+                <th scope="col"><a href="#personal-information-we-collect">Personal information we collect</a></th>
+                <th scope="col">CCPA-defined categories</th>
+                <th scope="col">Sources of personal information</th>
+                <th scope="col">Purposes for which we may collect and use the personal information</th>
+                <th scope="col">Data Sharing</th>
             </tr>
         </thead>
         <tbody>
@@ -293,19 +402,10 @@
                     <p>Commercial information</p>
                     <p>Online identifiers</p>
                 </td>
-                <td>The app store provider through which you purchased your subscription (i.e., Google or Apple)</td>
+                <td>The app store provider through which you purchased your subscription (i.e., Google Play or the
+                    Apple App Store)</td>
                 <td>To operate and improve the App</td>
                 <td>None</td>
-            </tr>
-            <tr>
-                <td>Social media information</td>
-                <td>
-                    <p>Identifiers</p>
-                    <p>Online identifiers</p>
-                </td>
-                <td>Third-party platforms</td>
-                <td>To operate and improve the App</td>
-                <td>Shared with third-party platforms (e.g., social media networks) at your direction</td>
             </tr>
             <tr>
                 <td>
@@ -321,17 +421,18 @@
                     <p>You</p>
                     <p>Automatic collection</p>
                 </td>
-                <td>To display advertisements to you</td>
-                <td>Collected directly by advertising partners</td>
+                <td>To operate and improve the App</td>
+                <td>Shared with service providers for analytics</td>
             </tr>
         </tbody>
     </table>
+    </div>
     <h3>California Residents&rsquo; Privacy Rights</h3>
     <p>Except as excluded from the scope of this notice above, the CCPA grants California residents the following
         rights.</p>
     <ul>
         <li><span class="strong">Information.</span> You can request information about how we have collected, used and
-            shared and used your personal information during the past 12 months. We have made this information
+            shared your personal information during the past 12 months. We have made this information
             available to California residents without having to request it by including it in this notice, in the above
             chart.</li>
         <li><span class="strong">Access.</span> You can request a copy of the personal information that we maintain
@@ -346,9 +447,7 @@
     <h3>How to Submit a Request</h3>
     <p>To request access to or deletion of personal information:</p>
     <ul>
-        <li><span
-                style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 1rem;">email:&nbsp;support@mellowvale.com</span>
-        </li>
+        <li>email: <a href="mailto:support@mellowvale.com">support@mellowvale.com</a></li>
     </ul>
     <p><span class="strong">Identity verification.</span> The CCPA requires us to verify the identity of the individual
         submitting a request to access or delete personal information before providing a substantive response to the
@@ -359,4 +458,9 @@
     <p><span class="strong">Authorized agents.</span> California residents can empower an &ldquo;authorized agent&rdquo;
         to submit requests on their behalf. We will require the authorized agent to have written authorization
         confirming such authority.</p>
-</div>
+    <footer>
+        <p>Looking for our Terms of Use? See <a href="terms_of_use.html">Terms of Use</a>.</p>
+    </footer>
+</main>
+</body>
+</html>
