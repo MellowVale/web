@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mellow Vale</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body>
+  <p>Redirecting...</p>
+  <p>
+    If you are not redirected:
+    <a id="ios" href="#">App Store</a> |
+    <a id="android" href="#">Google Play</a>
+  </p>
+  <noscript>
+    <p>JavaScript is disabled. Please use the links above.</p>
+  </noscript>
+
+  <script>
+    const IOS_APP_ID = "6743779831";
+    const IOS_PT = "72158800";
+    const ANDROID_PACKAGE = "com.mellowvale.mellow_vale";
+
+    const PLATFORM_MAP = {
+      ig: "instagram",
+      tt: "tiktok",
+      yt: "youtube"
+    };
+
+    const TYPE_MAP = {
+      s: { utmTerm: "story" },
+      r: { utmTerm: "reel"  },
+      p: { utmTerm: "photo" },
+      v: { utmTerm: "video" }
+    };
+
+    function sanitizeToken(str) {
+      return (str || "")
+        .toLowerCase()
+        .trim()
+        .replace(/[\s-]+/g, "_")
+        .replace(/[^a-z0-9_]/g, "_")
+        .replace(/_+/g, "_")
+        .replace(/^_+|_+$/g, "");
+    }
+
+    function parseR(rawR) {
+      const cleaned = sanitizeToken(rawR);
+      const parts = cleaned.split("_").filter(Boolean);
+
+      let platform = parts[0] || "ig";
+      let type = parts[1] || "v";
+      let creator = parts.slice(2).join("_") || "default";
+
+      if (!PLATFORM_MAP[platform]) platform = "ig";
+      if (!TYPE_MAP[type]) type = "v";
+
+      // "ig_v_" is 5 chars, so creator can be at most 25 to keep ct <= 30
+      creator = creator.slice(0, 25) || "default";
+
+      const campaign = `${platform}_${type}_${creator}`; // already <= 30
+      return { platform, type, creator, campaign };
+    }
+
+    function isIOSDevice() {
+      const ua = navigator.userAgent || "";
+      const iOSUA = /iPhone|iPad|iPod/i.test(ua);
+      const iPadOS = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+      return iOSUA || iPadOS;
+    }
+
+    function isAndroidDevice() {
+      return /Android/i.test(navigator.userAgent || "");
+    }
+
+    const q = new URLSearchParams(location.search);
+    const parsed = parseR(q.get("r") || "");
+
+    const utmSource = PLATFORM_MAP[parsed.platform] || "instagram";
+    const utmTerm = (TYPE_MAP[parsed.type] && TYPE_MAP[parsed.type].utmTerm) || "video";
+
+    const IOS_URL =
+      `https://apps.apple.com/app/apple-store/id${IOS_APP_ID}` +
+      `?pt=${encodeURIComponent(IOS_PT)}` +
+      `&ct=${encodeURIComponent(parsed.campaign)}` +
+      `&mt=8`;
+
+    // Build referrer plain, encode once at the end
+    const referrerPlain =
+      `utm_source=${utmSource}` +
+      `&utm_medium=influencer` +
+      `&utm_campaign=${parsed.campaign}` +
+      `&utm_term=${utmTerm}` +
+      `&utm_content=${parsed.creator}`;
+
+    const ANDROID_URL =
+      `https://play.google.com/store/apps/details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
+      `&referrer=${encodeURIComponent(referrerPlain)}`;
+
+    document.getElementById("ios").href = IOS_URL;
+    document.getElementById("android").href = ANDROID_URL;
+
+    if (isIOSDevice()) location.replace(IOS_URL);
+    else if (isAndroidDevice()) location.replace(ANDROID_URL);
+  </script>
+</body>
+</html>
