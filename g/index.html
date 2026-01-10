@@ -18,16 +18,19 @@
   </noscript>
 
   <script>
+    // Fixed app values
     const IOS_APP_ID = "6743779831";
     const IOS_PT = "72158800";
     const ANDROID_PACKAGE = "com.mellowvale.mellow_vale";
 
+    // Supported values
     const PLATFORM_MAP = {
       ig: "instagram",
       tt: "tiktok",
       yt: "youtube"
     };
 
+    // 4 content types supported
     const TYPE_MAP = {
       s: { utmTerm: "story" },
       r: { utmTerm: "reel"  },
@@ -56,16 +59,17 @@
       if (!PLATFORM_MAP[platform]) platform = "ig";
       if (!TYPE_MAP[type]) type = "v";
 
-      // "ig_v_" is 5 chars, so creator can be at most 25 to keep ct <= 30
+      // Apple ct max 30 chars. "ig_v_" is 5 chars, so creator max 25.
       creator = creator.slice(0, 25) || "default";
 
-      const campaign = `${platform}_${type}_${creator}`; // already <= 30
+      const campaign = `${platform}_${type}_${creator}`; // <= 30
       return { platform, type, creator, campaign };
     }
 
     function isIOSDevice() {
       const ua = navigator.userAgent || "";
       const iOSUA = /iPhone|iPad|iPod/i.test(ua);
+      // iPadOS 13+ reports as Mac; detect via touch capability
       const iPadOS = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
       return iOSUA || iPadOS;
     }
@@ -80,13 +84,14 @@
     const utmSource = PLATFORM_MAP[parsed.platform] || "instagram";
     const utmTerm = (TYPE_MAP[parsed.type] && TYPE_MAP[parsed.type].utmTerm) || "video";
 
+    // iOS App Store URL
     const IOS_URL =
       `https://apps.apple.com/app/apple-store/id${IOS_APP_ID}` +
       `?pt=${encodeURIComponent(IOS_PT)}` +
       `&ct=${encodeURIComponent(parsed.campaign)}` +
       `&mt=8`;
 
-    // Build referrer plain, encode once at the end
+    // Build referrer as plain string; encode once when appending
     const referrerPlain =
       `utm_source=${utmSource}` +
       `&utm_medium=influencer` +
@@ -94,15 +99,44 @@
       `&utm_term=${utmTerm}` +
       `&utm_content=${parsed.creator}`;
 
-    const ANDROID_URL =
+    // Android web Play URL
+    const ANDROID_WEB_URL =
       `https://play.google.com/store/apps/details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
       `&referrer=${encodeURIComponent(referrerPlain)}`;
 
-    document.getElementById("ios").href = IOS_URL;
-    document.getElementById("android").href = ANDROID_URL;
+    // Android app open attempts
+    // 1) intent:// works well in Chrome; can open Play Store app directly
+    const ANDROID_INTENT_URL =
+      `intent://details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
+      `#Intent;scheme=market;package=com.android.vending;` +
+      `S.referrer=${encodeURIComponent(referrerPlain)};end`;
 
-    if (isIOSDevice()) location.replace(IOS_URL);
-    else if (isAndroidDevice()) location.replace(ANDROID_URL);
+    // 2) market:// is a direct Play Store scheme (some browsers allow it)
+    const ANDROID_MARKET_URL =
+      `market://details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
+      `&referrer=${encodeURIComponent(referrerPlain)}`;
+
+    // Set fallback links for users (desktop or blocked redirects)
+    document.getElementById("ios").href = IOS_URL;
+    document.getElementById("android").href = ANDROID_WEB_URL;
+
+    // Redirect logic
+    if (isIOSDevice()) {
+      location.replace(IOS_URL);
+    } else if (isAndroidDevice()) {
+      // Try intent first (best chance to open Play Store app)
+      location.href = ANDROID_INTENT_URL;
+
+      // If intent is blocked/ignored, try market:// then web as last fallback
+      setTimeout(() => {
+        try { location.href = ANDROID_MARKET_URL; } catch (e) {}
+      }, 350);
+
+      setTimeout(() => {
+        location.replace(ANDROID_WEB_URL);
+      }, 900);
+    }
+    // Desktop: stay on page and let user click
   </script>
 </body>
 </html>
