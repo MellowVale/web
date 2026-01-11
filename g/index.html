@@ -1,142 +1,208 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mellow Vale</title>
-  <meta name="robots" content="noindex" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mellow Vale</title>
+    <meta name="robots" content="noindex" />
+    <style>
+        :root {
+            color-scheme: light;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: "Palatino Linotype", "Palatino", "Book Antiqua", serif;
+            background: linear-gradient(135deg, #f6f2ea, #eef6f1);
+            color: #2d2a26;
+        }
+
+        main {
+            max-width: 520px;
+            padding: 24px 28px;
+            margin: 24px;
+            background: #fffaf2;
+            border: 1px solid #eadfce;
+            border-radius: 12px;
+            box-shadow: 0 12px 30px rgba(35, 28, 20, 0.12);
+            animation: fadeIn 600ms ease-out;
+        }
+
+        p {
+            margin: 0 0 12px;
+            line-height: 1.5;
+        }
+
+        .links {
+            margin-bottom: 0;
+        }
+
+        a {
+            color: #2a6b51;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(42, 107, 81, 0.35);
+        }
+
+        a:hover,
+        a:focus {
+            color: #224b3b;
+            border-bottom-color: rgba(34, 75, 59, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <p>Redirecting...</p>
-  <p>
-    If you are not redirected:
-    <a id="ios" href="#">App Store</a> |
-    <a id="android" href="#">Google Play</a>
-  </p>
-  <noscript>
-    <p>JavaScript is disabled. Please use the links above.</p>
-  </noscript>
+    <main>
+        <p>Redirecting...</p>
+        <p class="links">
+            If you are not redirected:
+            <a id="ios" href="https://apps.apple.com/app/apple-store/id6743779831">App Store</a> |
+            <a id="android" href="https://play.google.com/store/apps/details?id=com.mellowvale.mellow_vale">Google Play</a>
+        </p>
+        <noscript>
+            <p>JavaScript is disabled. Please use the links above.</p>
+        </noscript>
+    </main>
 
-  <script>
-    // Fixed app values
-    const IOS_APP_ID = "6743779831";
-    const IOS_PT = "72158800";
-    const ANDROID_PACKAGE = "com.mellowvale.mellow_vale";
+    <script>
+        // Fixed app values
+        const IOS_APP_ID = "6743779831";
+        const IOS_PT = "72158800";
+        const ANDROID_PACKAGE = "com.mellowvale.mellow_vale";
 
-    // Supported values
-    const PLATFORM_MAP = {
-      ig: "instagram",
-      tt: "tiktok",
-      yt: "youtube"
-    };
+        // Supported values
+        const PLATFORM_MAP = {
+            ig: "instagram",
+            tt: "tiktok",
+            yt: "youtube"
+        };
 
-    // 4 content types supported
-    const TYPE_MAP = {
-      s: { utmTerm: "story" },
-      r: { utmTerm: "reel"  },
-      p: { utmTerm: "photo" },
-      v: { utmTerm: "video" }
-    };
+        // 4 content types supported
+        const TYPE_MAP = {
+            s: { utmTerm: "story" },
+            r: { utmTerm: "reel" },
+            p: { utmTerm: "photo" },
+            v: { utmTerm: "video" }
+        };
 
-    function sanitizeToken(str) {
-      return (str || "")
-        .toLowerCase()
-        .trim()
-        .replace(/[\s-]+/g, "_")
-        .replace(/[^a-z0-9_]/g, "_")
-        .replace(/_+/g, "_")
-        .replace(/^_+|_+$/g, "");
-    }
+        function sanitizeToken(str) {
+            return (str || "")
+                .toLowerCase()
+                .trim()
+                .replace(/[\s-]+/g, "_")
+                .replace(/[^a-z0-9_]/g, "_")
+                .replace(/_+/g, "_")
+                .replace(/^_+|_+$/g, "");
+        }
 
-    function parseR(rawR) {
-      const cleaned = sanitizeToken(rawR);
-      const parts = cleaned.split("_").filter(Boolean);
+        function parseR(rawR) {
+            const cleaned = sanitizeToken(rawR);
+            const parts = cleaned.split("_").filter(Boolean);
 
-      let platform = parts[0] || "ig";
-      let type = parts[1] || "v";
-      let creator = parts.slice(2).join("_") || "default";
+            let platform = parts[0] || "ig";
+            let type = parts[1] || "v";
+            let creator = parts.slice(2).join("_") || "default";
 
-      if (!PLATFORM_MAP[platform]) platform = "ig";
-      if (!TYPE_MAP[type]) type = "v";
+            if (!PLATFORM_MAP[platform]) platform = "ig";
+            if (!TYPE_MAP[type]) type = "v";
 
-      // Apple ct max 30 chars. "ig_v_" is 5 chars, so creator max 25.
-      creator = creator.slice(0, 25) || "default";
+            // Apple ct max 30 chars. "ig_v_" is 5 chars, so creator max 25.
+            creator = creator.slice(0, 25) || "default";
 
-      const campaign = `${platform}_${type}_${creator}`; // <= 30
-      return { platform, type, creator, campaign };
-    }
+            const campaign = `${platform}_${type}_${creator}`; // <= 30
+            return { platform, type, creator, campaign };
+        }
 
-    function isIOSDevice() {
-      const ua = navigator.userAgent || "";
-      const iOSUA = /iPhone|iPad|iPod/i.test(ua);
-      // iPadOS 13+ reports as Mac; detect via touch capability
-      const iPadOS = navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
-      return iOSUA || iPadOS;
-    }
+        function isIOSDevice() {
+            const ua = navigator.userAgent || "";
+            const iOSUA = /iPhone|iPad|iPod/i.test(ua);
+            // iPadOS 13+ reports as Mac; detect via touch capability
+            const uaPlatform = navigator.userAgentData && navigator.userAgentData.platform;
+            const isMacLike = navigator.platform === "MacIntel" || uaPlatform === "macOS";
+            const iPadOS = isMacLike && navigator.maxTouchPoints > 1;
+            return iOSUA || iPadOS;
+        }
 
-    function isAndroidDevice() {
-      return /Android/i.test(navigator.userAgent || "");
-    }
+        function isAndroidDevice() {
+            return /Android/i.test(navigator.userAgent || "");
+        }
 
-    const q = new URLSearchParams(location.search);
-    const parsed = parseR(q.get("r") || "");
+        const q = new URLSearchParams(location.search);
+        const parsed = parseR(q.get("r") || "");
 
-    const utmSource = PLATFORM_MAP[parsed.platform] || "instagram";
-    const utmTerm = (TYPE_MAP[parsed.type] && TYPE_MAP[parsed.type].utmTerm) || "video";
+        const utmSource = PLATFORM_MAP[parsed.platform] || "instagram";
+        const utmTerm = (TYPE_MAP[parsed.type] && TYPE_MAP[parsed.type].utmTerm) || "video";
 
-    // iOS App Store URL
-    const IOS_URL =
-      `https://apps.apple.com/app/apple-store/id${IOS_APP_ID}` +
-      `?pt=${encodeURIComponent(IOS_PT)}` +
-      `&ct=${encodeURIComponent(parsed.campaign)}` +
-      `&mt=8`;
+        // iOS App Store URL
+        const IOS_URL =
+            `https://apps.apple.com/app/apple-store/id${IOS_APP_ID}` +
+            `?pt=${encodeURIComponent(IOS_PT)}` +
+            `&ct=${encodeURIComponent(parsed.campaign)}` +
+            `&mt=8`;
 
-    // Build referrer as plain string; encode once when appending
-    const referrerPlain =
-      `utm_source=${utmSource}` +
-      `&utm_medium=influencer` +
-      `&utm_campaign=${parsed.campaign}` +
-      `&utm_term=${utmTerm}` +
-      `&utm_content=${parsed.creator}`;
+        // Build referrer as plain string; encode once when appending
+        const referrerPlain =
+            `utm_source=${utmSource}` +
+            `&utm_medium=influencer` +
+            `&utm_campaign=${parsed.campaign}` +
+            `&utm_term=${utmTerm}` +
+            `&utm_content=${parsed.creator}`;
 
-    // Android web Play URL
-    const ANDROID_WEB_URL =
-      `https://play.google.com/store/apps/details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
-      `&referrer=${encodeURIComponent(referrerPlain)}`;
+        // Android web Play URL
+        const ANDROID_WEB_URL =
+            `https://play.google.com/store/apps/details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
+            `&referrer=${encodeURIComponent(referrerPlain)}`;
 
-    // Android app open attempts
-    // 1) intent:// works well in Chrome; can open Play Store app directly
-    const ANDROID_INTENT_URL =
-      `intent://details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
-      `#Intent;scheme=market;package=com.android.vending;` +
-      `S.referrer=${encodeURIComponent(referrerPlain)};end`;
+        // Android app open attempts
+        // 1) intent:// works well in Chrome; can open Play Store app directly
+        const ANDROID_INTENT_URL =
+            `intent://details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
+            `#Intent;scheme=market;package=com.android.vending;` +
+            `S.referrer=${encodeURIComponent(referrerPlain)};end`;
 
-    // 2) market:// is a direct Play Store scheme (some browsers allow it)
-    const ANDROID_MARKET_URL =
-      `market://details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
-      `&referrer=${encodeURIComponent(referrerPlain)}`;
+        // 2) market:// is a direct Play Store scheme (some browsers allow it)
+        const ANDROID_MARKET_URL =
+            `market://details?id=${encodeURIComponent(ANDROID_PACKAGE)}` +
+            `&referrer=${encodeURIComponent(referrerPlain)}`;
 
-    // Set fallback links for users (desktop or blocked redirects)
-    document.getElementById("ios").href = IOS_URL;
-    document.getElementById("android").href = ANDROID_WEB_URL;
+        // Set fallback links for users (desktop or blocked redirects)
+        document.getElementById("ios").href = IOS_URL;
+        document.getElementById("android").href = ANDROID_WEB_URL;
 
-    // Redirect logic
-    if (isIOSDevice()) {
-      location.replace(IOS_URL);
-    } else if (isAndroidDevice()) {
-      // Try intent first (best chance to open Play Store app)
-      location.href = ANDROID_INTENT_URL;
+        // Redirect logic
+        if (isIOSDevice()) {
+            location.replace(IOS_URL);
+        } else if (isAndroidDevice()) {
+            // Try intent first (best chance to open Play Store app)
+            location.href = ANDROID_INTENT_URL;
 
-      // If intent is blocked/ignored, try market:// then web as last fallback
-      setTimeout(() => {
-        try { location.href = ANDROID_MARKET_URL; } catch (e) {}
-      }, 350);
+            // If intent is blocked/ignored, try market:// then web as last fallback
+            setTimeout(() => {
+                try { location.href = ANDROID_MARKET_URL; } catch (e) { }
+            }, 350);
 
-      setTimeout(() => {
-        location.replace(ANDROID_WEB_URL);
-      }, 900);
-    }
-    // Desktop: stay on page and let user click
-  </script>
+            setTimeout(() => {
+                location.replace(ANDROID_WEB_URL);
+            }, 900);
+        }
+        // Desktop: stay on page and let user click
+    </script>
 </body>
+
 </html>
